@@ -142,7 +142,7 @@ class firewalld_conf(object):
             log.error("IPv6_rpfilter '%s' is not valid, using default "
                       "value %s", value if value else '',
                       FALLBACK_IPV6_RPFILTER)
-            self.set("IPv6_rpfilter","yes" if FALLBACK_IPV6_RPFILTER else "no")
+            self.set("IPv6_rpfilter", "yes" if FALLBACK_IPV6_RPFILTER else "no")
 
         # check individual calls
         if not self.get("IndividualCalls"):
