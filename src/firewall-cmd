@@ -413,6 +413,7 @@ def __print_zone_info(zone, settings):
     icmp_blocks = settings.getIcmpBlocks()
     rules = settings.getRichRules()
     description = settings.getDescription()
+    short_description = settings.getShort()
 
     attributes = []
     if zone == fw.getDefaultZone():
@@ -422,6 +423,7 @@ def __print_zone_info(zone, settings):
     if attributes:
         zone = zone + " (%s)" % ", ".join(attributes)
     __print(zone)
+    __print("  summary: " + short_description)
     __print("  interfaces: " + " ".join(interfaces))
     __print("  sources: " + " ".join(sources))
     __print("  services: " + " ".join(services))
