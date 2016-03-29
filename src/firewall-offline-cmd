@@ -428,6 +428,7 @@ def __print_zone_info(zone, settings):
     forward_ports = settings.getForwardPorts()
     icmp_blocks = settings.getIcmpBlocks()
     rules = settings.getRichRules()
+    description = settings.getDescription()
     __print(zone)
     __print("  interfaces: " + " ".join(interfaces))
     __print("  sources: " + " ".join(sources))
@@ -438,6 +439,7 @@ def __print_zone_info(zone, settings):
     __print("  forward-ports: " + "\n\t".join(["port=%s:proto=%s:toport=%s:toaddr=%s" % (port, protocol, toport, toaddr) for (port, protocol, toport, toaddr) in forward_ports]))
     __print("  icmp-blocks: " + " ".join(icmp_blocks))
     __print("  rich rules: \n\t" + "\n\t".join(rules))
+    __print("  description: " + description)
 
 def __print_service_info(service, settings):
     ports = settings.getPorts()
