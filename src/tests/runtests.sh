@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 clean() {
     rm -rf /etc/firewalld/direct /etc/firewalld/icmptypes \
@@ -23,22 +23,22 @@ echo "Starting FirewallD server"
 while true; do
     old_fwd=$(pgrep firewalld)
     if [ "x" != "x$old_fwd" ]; then
-        kill $old_fwd > /dev/null 2>&1
+        sudo kill $old_fwd > /dev/null 2>&1
     else
         break
     fi
 done
 
 clean
-$basedir/src/firewalld || exit 1
+sudo $basedir/src/firewalld || exit 1
 
 pushd $basedir/src/tests > /dev/null 2>&1
 for x in firewall*.sh firewall*.py; do
     echo "Restarting FirewallD configuration"
-    $basedir/src/firewall-cmd -q --complete-reload
+    sudo $basedir/src/firewall-cmd -q --complete-reload
     echo "Running test: $x"
     # Pass 'y' to any asked questions
-    echo 'y' | ./$x || fail $x $?
+    echo 'y' | sudo ./$x || fail $x $?
 done
 popd > /dev/null 2>&1
 
